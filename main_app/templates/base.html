@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <nav>
@@ -22,7 +25,7 @@
         {% endblock %}
     </main>
     <footer>
-        <div>All Rights Reserved, © 2021 Pokemon Collector</div>
+        <div>All Rights Reserved, © 2022 Pokemon Collector</div>
     </footer>
 </body>
 </html>
