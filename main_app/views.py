@@ -29,5 +29,11 @@ class PokemonCreate(CreateView):
     model = Pokemon
     fields = '__all__'
 
+class PokemonUpdate(UpdateView):
+    model = Pokemon
+    fields = ['type', 'can_evolve', 'evolution_stage']
+
+
+
 
 

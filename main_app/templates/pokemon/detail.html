@@ -7,6 +7,8 @@
         <p>Can Evolve: {{ pocketmonsters.can_evolve }}</p>
         <p>Evolution Stage: {{ pocketmonsters.evolution_stage }}</p>
     </div>
+    <a href="{% url 'pokemon_update' pocketmonsters.id %}">Edit Pokemon!</a>
+    <br><br><br><br><br><br>
     <a href="/pokemon">Back to all Pokemon!</a>
 
 {% endblock %}

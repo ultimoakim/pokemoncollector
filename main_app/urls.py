@@ -11,4 +11,6 @@ urlpatterns = [
     path('pokemon/<int:pokem_id>/', views.pokemon_detail, name='detail'),
     # Creating Pokemon: pokemon/create/
     path('pokemon/create/', views.PokemonCreate.as_view(), name='pokemon_create'),
+    # Updating Pokemon: pokemon/<int:pk>/update/. Remember, now we're using CLASS-BASED VIEWS, so any time we need the id, we're gonna put in pk. You MUST put in pk for class-based views!
+    path('pokemon/<int:pk>/update/', views.PokemonUpdate.as_view(), name='pokemon_update')
 ]
