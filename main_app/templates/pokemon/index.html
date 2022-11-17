@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Pokemon List</h1>
+
+{% for poke in pokemon %}
+    <div>
+        <a href="/pokemon/{{ poke.id }}">
+        <p>Name: {{ poke.name }}</p>
+        <p>Type: {{ poke.type }}</p>
+        {% if poke.can_evolve == True %}
+            <p>Can Evolve: Yes</p>
+            <p>Evolution Stage: {{ poke.evolution_stage }}</p>
+            <p>=======================</p>
+        {% else %}
+            <p>Can Evolve: No. Max evolution reached.</p>
+            <p>Evolution Stage: {{ poke.evolution_stage }}</p>
+            <p>=======================</p>
+        </a>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}

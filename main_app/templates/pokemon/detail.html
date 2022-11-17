@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div>
+        <p>Name: {{ pocketmonsters.name }}</p> 
+        <p>Type: {{ pocketmonsters.type }}</p>
+        <p>Can Evolve: {{ pocketmonsters.can_evolve }}</p>
+        <p>Evolution Stage: {{ pocketmonsters.evolution_stage }}</p>
+    </div>
+    <a href="/pokemon">Back to all Pokemon!</a>
+
+{% endblock %}
