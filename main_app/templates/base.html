@@ -13,13 +13,16 @@
     <nav>
         <div id="menubar">
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
             </ul>
             <ul>
-                <li><a href="/about">About</a></li>
+                <li><a href="{% url 'about' %}">About the Pokemon Collector</a></li>
             </ul>
             <ul>
-                <li><a href="/pokemon">View All The Pokemon!</a></li>
+                <li><a href="{% url 'pokemon_create' %}">Create Pokemon!</a></li>
+            </ul>
+            <ul>
+                <li><a href="{% url 'index' %}">View All The Pokemon!</a></li>
             </ul>
         </div>
     </nav>

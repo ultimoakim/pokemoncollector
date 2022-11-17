@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Pokemon(models.Model):
@@ -9,3 +10,6 @@ class Pokemon(models.Model):
 
     def __str__(self):
         return f"Name: {self.name}, Type: {self.type}, Can Evolve: {self.can_evolve}, Evolution Stage: {self.evolution_stage}"
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pokem_id': self.id})
