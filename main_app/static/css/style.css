@@ -1,8 +1,17 @@
 body {
-    background-color: aliceblue;
+    background-color: rgb(255, 204, 86);
 }
 
 #menubar {
+    background-color: aquamarine;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+#pokemonviewbox {
+    border-style: solid;
+}
+
+#pokemonfooter {
+    pointer-events: none;
 }

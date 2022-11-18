@@ -2,10 +2,11 @@
 {% block content %}
 
 {% if object %}
-<h1>Edit Pokemon!</h1>
+<h1>Edit Pokémon!</h1>
 {% else %}
-<h1>Add Pokemon!</h1>
+<h1>Add Pokémon!</h1>
 {% endif %}
+<hr>
 
 
 <form action="" method="POST">
@@ -15,4 +16,5 @@
     </table>
     <input type="submit" value="Done? Submit!">
 </form>
+<br>
 {% endblock %}

@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Pokemon List</h1>
-
+<h1>Pokémon List</h1>
+<hr>
+<br>
 {% for poke in pokemon %}
-    <div>
+    <div id="pokemonviewbox">
         <a href="/pokemon/{{ poke.id }}">
-        <p>Name: {{ poke.name }}</p>
+        <h2>{{ poke.name }}</h2>
         <p>Type: {{ poke.type }}</p>
         {% if poke.can_evolve == True %}
             <p>Can Evolve: Yes</p>
@@ -19,6 +20,7 @@
         </a>
         {% endif %}
     </div>
+    <br><br>
 {% endfor %}
 
 {% endblock %}

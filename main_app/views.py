@@ -33,7 +33,10 @@ class PokemonUpdate(UpdateView):
     model = Pokemon
     fields = ['type', 'can_evolve', 'evolution_stage']
 
-
+class PokemonDelete(DeleteView):
+    model = Pokemon
+    success_url = '/pokemon'
+    # Again, this is the same thing as redirect, which means you would write the path of the URL! And that means STARTING with a forward slash, like in Express!
 
 
 

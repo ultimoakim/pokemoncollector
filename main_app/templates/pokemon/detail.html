@@ -2,13 +2,16 @@
 {% block content %}
 
     <div>
-        <p>Name: {{ pocketmonsters.name }}</p> 
+        <h2>Name: {{ pocketmonsters.name }}</h2> 
         <p>Type: {{ pocketmonsters.type }}</p>
         <p>Can Evolve: {{ pocketmonsters.can_evolve }}</p>
         <p>Evolution Stage: {{ pocketmonsters.evolution_stage }}</p>
     </div>
-    <a href="{% url 'pokemon_update' pocketmonsters.id %}">Edit Pokemon!</a>
-    <br><br><br><br><br><br>
-    <a href="/pokemon">Back to all Pokemon!</a>
-
+    <br>
+    <a href="{% url 'pokemon_update' pocketmonsters.id %}">Edit Pokémon!</a>
+    <a href="{% url 'pokemon_delete' pocketmonsters.id %}">Delete Pokémon?</a>
+    <br><br><br><br><br><br><br><br>
+    <a href="/pokemon">Back to all Pokémon!</a>
+    
+    
 {% endblock %}
