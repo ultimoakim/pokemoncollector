@@ -12,15 +12,12 @@
         {% if poke.can_evolve == True %}
             <p>Can Evolve: Yes</p>
             <p>Evolution Stage: {{ poke.evolution_stage }}</p>
-            <p>=======================</p>
         {% else %}
             <p>Can Evolve: No. Max evolution reached.</p>
             <p>Evolution Stage: {{ poke.evolution_stage }}</p>
-            <p>=======================</p>
-        </a>
         {% endif %}
+        </a>
     </div>
     <br><br>
-{% endfor %}
-
+    {% endfor %}
 {% endblock %}

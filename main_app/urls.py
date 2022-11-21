@@ -15,4 +15,5 @@ urlpatterns = [
     path('pokemon/<int:pk>/update/', views.PokemonUpdate.as_view(), name='pokemon_update'),
     # Deleting Pokemon: pokemon/<int:pk>/delete/
     path('pokemon/<int:pk>/delete/', views.PokemonDelete.as_view(), name='pokemon_delete'),
+    path('pokemon/<int:pokem_id>/add_move/', views.add_move, name='add_move'),
 ]

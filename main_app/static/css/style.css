@@ -12,6 +12,18 @@ body {
     border-style: solid;
 }
 
-#pokemonfooter {
-    pointer-events: none;
+#datatable {
+    border-style: solid;
+    border-collapse: collapse;
+    border-spacing: 0 5px;
+}
+
+#headdata {
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+#bodydata {
+    border-style: solid;
+    border-collapse: collapse;
 }

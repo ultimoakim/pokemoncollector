@@ -1,17 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <div>
-        <h2>Name: {{ pocketmonsters.name }}</h2> 
-        <p>Type: {{ pocketmonsters.type }}</p>
-        <p>Can Evolve: {{ pocketmonsters.can_evolve }}</p>
-        <p>Evolution Stage: {{ pocketmonsters.evolution_stage }}</p>
-    </div>
-    <br>
-    <a href="{% url 'pokemon_update' pocketmonsters.id %}">Edit Pokémon!</a>
-    <a href="{% url 'pokemon_delete' pocketmonsters.id %}">Delete Pokémon?</a>
-    <br><br><br><br><br><br><br><br>
-    <a href="/pokemon">Back to all Pokémon!</a>
-    
-    
+<div>
+    <h2>Name: {{ pocketmonsters.name }}</h2>
+    <p>Type: {{ pocketmonsters.type }}</p>
+    <p>Can Evolve: {{ pocketmonsters.can_evolve }}</p>
+    <p>Evolution Stage: {{ pocketmonsters.evolution_stage }}</p>
+</div>
+<br>
+<a href="{% url 'pokemon_update' pocketmonsters.id %}">Edit Pokémon!</a>
+<a href="{% url 'pokemon_delete' pocketmonsters.id %}">Delete Pokémon?</a>
+<br>
+<h2>Moves</h2>
+
+{% if pocketmonsters.move_set == True %}
+<table id="datatable">
+    <thead id="headdata">
+        <tr>
+            <th>Move Name</th>
+            <th>Element of Move</th>
+        </tr>
+    </thead>
+    {% for move in pocketmonsters.move_set.all %}
+    <tbody id="bodydata">
+        <tr>
+            <td>{{ move.movename }}</td>
+            <td>{{ move.element }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% else %}
+<p>No moves have been added for this Pokémon yet! Why not be the first?</p>
+{% endif %}
+<h3>Add a move for this Pokémon below here!</h3>
+<form action="{% url 'add_move' pocketmonsters.id %}" method="POST">
+{% csrf_token %}
+{{ move_form.as_p }}
+<p>Finished? Click "Add Move!" to add the move!</p>
+    <input type="submit" value="Add Move!">
+</form>
+
+<br><br><br><br><br><br><br><br>
+<a href="/pokemon">⬅️ Back to all Pokémon!</a>
+<br><br>
 {% endblock %}
