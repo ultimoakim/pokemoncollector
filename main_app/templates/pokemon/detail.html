@@ -41,6 +41,33 @@
     <input type="submit" value="Add Move!">
 </form>
 
+<h3>Weaknesses</h3>
+{% if pocketmonsters.weaknesses.count %}
+    {% for weakness in pocketmonsters.weaknesses.all %}
+        <p>{{ weakness.element }}</p>
+        <form action="{% url 'unassoc_weakness' pocketmonsters.id weakness.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Remove Weakness!">
+        </form>
+    {% endfor %}
+{% else %}
+    <h4>No weaknesses added! 😢</h4>
+{% endif %}
+
+<!-- Available weaknesses come after this line! -->
+<h3>Available Weaknesses</h3>
+{% if weaknesses.count %}
+    {% for weakness in weaknesses.all %}
+        <p>{{ weakness.element }}</p>
+        <form action="{% url 'assoc_weakness' pocketmonsters.id weakness.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Add Weakness!</button>
+        </form>
+    {% endfor %}
+{% else %}
+    <h3>{{ pokemon.name }} has all weaknesses... Which means something is wrong. A Pokemon can't have all weaknesses. Fix it up!</h3>
+{% endif %}
+
 <br><br><br><br><br><br><br><br>
 <a href="/pokemon">⬅️ Back to all Pokémon!</a>
 <br><br>

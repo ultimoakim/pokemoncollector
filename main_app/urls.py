@@ -16,4 +16,12 @@ urlpatterns = [
     # Deleting Pokemon: pokemon/<int:pk>/delete/
     path('pokemon/<int:pk>/delete/', views.PokemonDelete.as_view(), name='pokemon_delete'),
     path('pokemon/<int:pokem_id>/add_move/', views.add_move, name='add_move'),
+    # Now then, we add our routes for our weaknesses model!
+    path('pokemon/<int:pokem_id>/assoc_weakness/<int:weakness_id>/', views.assoc_weakness, name='assoc_weakness'),
+    path('pokemon/<int:pokem_id>/unassoc_weakness/<int:weakness_id>/', views.unassoc_weakness, name='unassoc_weakness'),
+    path('weaknesses/', views.WeaknessList.as_view(), name='weaknesses_index'),
+    path('weaknesses/<int:pk>/', views.WeaknessDetail.as_view(), name='weaknesses_detail'),
+    path('weaknesses/create/', views.WeaknessCreate.as_view(), name='weaknesses_create'),
+    path('weaknesses/<int:pk>/update/', views.WeaknessUpdate.as_view(), name='weaknesses_update'),
+    path('weaknesses/<int:pk>/delete/', views.WeaknessDelete.as_view(), name='weaknesses_delete'),
 ]

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for weakness in weakness_list %}
+    {% if weakness %}
+    <a href="{% url 'weaknesses_detail' weakness.id %}">
+        <p>{{ weakness.element }}</p>
+    </a>
+    {% else %}
+    <p>No weaknesses added!</p>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

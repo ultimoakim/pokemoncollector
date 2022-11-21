@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Weakness Details</h1>
+
+<h3>Details on the {{ weakness.element }} element!</h3>
+<a href="{% url 'weaknesses_update' weakness.id %}">Edit</a>
+<a href="{% url 'weaknesses_delete' weakness.id %}">Delete</a>
+
+{% endblock %}

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 # Importing the Pokemon model here:
-from .models import Pokemon
+from .models import Pokemon, Weakness
 from .forms import MoveForm
 
 # Create your views here.
@@ -25,11 +26,28 @@ def pokemon_index(request):
 # That's why I did pokem_id on purpose in urls.py just to prove a point that the parameter we put inside of our function here is the URL ID that we put in urls.py. In the path('pokemon/<int:pokem_id>/', views.pokemon_detail, name='detail').
 def pokemon_detail(request, pokem_id):
     pokemon = Pokemon.objects.get(id=pokem_id)
+    id_list = pokemon.weaknesses.all().values_list('id')
+    weaknesses_pokemon_doesnt_have = Weakness.objects.exclude(id__in=id_list)
     move_form = MoveForm()
     return render(request, 'pokemon/detail.html', {
         'pocketmonsters': pokemon,
-        'move_form': move_form
+        'move_form': move_form,
+        'weaknesses': weaknesses_pokemon_doesnt_have,
     })
+
+
+class PokemonCreate(CreateView):
+    model = Pokemon
+    fields = ['name', 'type', 'can_evolve', 'evolution_stage']
+
+class PokemonUpdate(UpdateView):
+    model = Pokemon
+    fields = ['type', 'can_evolve', 'evolution_stage']
+
+class PokemonDelete(DeleteView):
+    model = Pokemon
+    success_url = '/pokemon'
+    # Again, this is the same thing as redirect, which means you would write the path of the URL! And that means STARTING with a forward slash, like in Express!
 
 # This is being put on the details.html page.
 def add_move(request, pokem_id):
@@ -40,18 +58,35 @@ def add_move(request, pokem_id):
         new_move.save()
     return redirect('detail', pokem_id=pokem_id)
 
-class PokemonCreate(CreateView):
-    model = Pokemon
+# Below is all the CBV's for weaknesses!
+# We don't need any functionalities to create, update, or delete them because they're already predetermined in Pokemon.
+
+class WeaknessList(ListView):
+    model = Weakness
+
+class WeaknessDetail(DetailView):
+    model = Weakness
+
+class WeaknessCreate(CreateView):
+    model = Weakness
     fields = '__all__'
 
-class PokemonUpdate(UpdateView):
-    model = Pokemon
-    fields = ['type', 'can_evolve', 'evolution_stage']
+class WeaknessUpdate(UpdateView):
+    model = Weakness
+    fields = ['element']
 
-class PokemonDelete(DeleteView):
-    model = Pokemon
-    success_url = '/pokemon'
-    # Again, this is the same thing as redirect, which means you would write the path of the URL! And that means STARTING with a forward slash, like in Express!
+class WeaknessDelete(DeleteView):
+    model = Weakness
+    success_url = '/weaknesses'
+
+def assoc_weakness(request, pokem_id, weakness_id):
+    Pokemon.objects.get(id=pokem_id).weaknesses.add(weakness_id)
+    return redirect('detail', pokem_id=pokem_id)
+
+def unassoc_weakness(request, pokem_id, weakness_id):
+    Pokemon.objects.get(id=pokem_id).weaknesses.remove(weakness_id)
+    return redirect('detail', pokem_id=pokem_id)
+
 
 
 
